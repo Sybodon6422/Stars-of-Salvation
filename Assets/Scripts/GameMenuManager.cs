@@ -4,29 +4,21 @@ using UnityEngine;
 
 public class GameMenuManager : MonoBehaviour
 {
-    public GameObject shipMenu, mapMenu, researchMenu;
-    public void OpenShipMenu()
+    public GameObject[] menuList;
+    public void OpenMainMenu()
     {
-        shipMenu.SetActive(true);
-        mapMenu.SetActive(false);
-        researchMenu.SetActive(false);
+        for (int i = 0; i < menuList.Length; i++)
+        {
+            if(i == 0)
+            {
+                menuList[i].SetActive(true);
+            }
+            else
+            {
+                menuList[i].SetActive(false);
+            }
+        }
     }
-    public void OpenMapMenu()
-    {
-        shipMenu.SetActive(false);
-        mapMenu.SetActive(true);
-        researchMenu.SetActive(false);
-    }
-    public void OpenResearchMenu()
-    {
-        shipMenu.SetActive(false);
-        mapMenu.SetActive(false);
-        researchMenu.SetActive(true);
-    }
-
-    public GameObject choiceSubMenu, miningSubMenu;
-    public void OpenChoiceSubMenu() { miningSubMenu.SetActive(false); choiceSubMenu.SetActive(true); }
-    public void OpenMiningSubMenu() { miningSubMenu.SetActive(true); choiceSubMenu.SetActive(false); }
 
     public void SaveGame() { GameManager.Instance.SaveGame(); }
 }
